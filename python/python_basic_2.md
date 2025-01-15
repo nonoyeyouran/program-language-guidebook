@@ -61,7 +61,19 @@ print(Dog.is_dog("Dog"))  # 输出: True
 ## 3. 构造函数与析构函数
 - **构造函数 (`__init__`)**：在创建对象时自动调用，用于初始化对象的属性。
 - **析构函数 (`__del__`)**：在对象销毁时自动调用，用于释放资源。
+```
+class Dog:
+    def __init__(self, name):
+        self.name = name
+        print(f"{self.name} is created!")
 
+    def __del__(self):
+        print(f"{self.name} is destroyed!")
+
+# 使用
+my_dog = Dog("Buddy")  # 输出: Buddy is created!
+del my_dog  # 输出: Buddy is destroyed!
+```
 ---
 
 ## 4. 封装
@@ -70,7 +82,21 @@ print(Dog.is_dog("Dog"))  # 输出: True
 ### 4.1 访问控制
 - **公有成员**：默认情况下，类的属性和方法是公有的，可以在类外部访问。
 - **私有成员**：在属性或方法名前加双下划线 `__`，表示私有成员，只能在类内部访问。
+```
+class Dog:
+    def __init__(self, name, age):
+        self.name = name  # 公有属性
+        self.__age = age  # 私有属性
 
+    def get_age(self):  # 公有方法
+        return self.__age
+
+# 使用
+my_dog = Dog("Buddy", 3)
+print(my_dog.name)  # 输出: Buddy
+print(my_dog.get_age())  # 输出: 3
+# print(my_dog.__age)  # 报错: 无法访问私有属性
+```
 ---
 
 ## 5. 继承
@@ -87,7 +113,22 @@ print(Dog.is_dog("Dog"))  # 输出: True
 
 ### 5.4 `super()` 函数
 - 用于调用父类的方法，通常在子类的构造函数中使用。
+```
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
+    def speak(self):
+        print(f"{self.name} makes a sound.")
+
+class Dog(Animal):  # 单继承
+    def speak(self):  # 方法重写
+        print(f"{self.name} barks!")
+
+# 使用
+my_dog = Dog("Buddy")
+my_dog.speak()  # 输出: Buddy barks!
+```
 ---
 
 ## 6. 多态
@@ -111,7 +152,23 @@ Python 提供了许多特殊方法（以双下划线 `__` 开头和结尾），�
 - `__repr__`：定义对象的官方字符串表示形式。
 - `__len__`：定义对象的长度。
 - `__add__`：定义对象的加法操作。
+```
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+# 使用
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+print(p1 + p2)  # 输出: Point(4, 6)
+```
 ---
 
 ## 8. 抽象基类
@@ -119,7 +176,22 @@ Python 提供了许多特殊方法（以双下划线 `__` 开头和结尾），�
 
 ### 8.1 使用 `abc` 模块
 - 通过 `abc.ABC` 和 `@abc.abstractmethod` 定义抽象基类。
+```
+from abc import ABC, abstractmethod
 
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        print("Woof!")
+
+# 使用
+my_dog = Dog()
+my_dog.speak()  # 输出: Woof!
+```
 ---
 
 ## 9. 属性装饰器
@@ -134,12 +206,52 @@ Python 提供了属性装饰器，用于将方法转换为属性。
 ### 9.3 `@属性名.deleter`
 - 定义属性的删除方法。
 
+```
+class Dog:
+    def __init__(self, name):
+        self._name = name
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+
+    @name.deleter
+    def name(self):
+        del self._name
+
+# 使用
+my_dog = Dog("Buddy")
+print(my_dog.name)  # 输出: Buddy
+my_dog.name = "Max"
+print(my_dog.name)  # 输出: Max
+del my_dog.name
+```
 ---
 
 ## 10. 类的组合与聚合
 - **组合**：一个类的对象是另一个类的组成部分，生命周期一致。
 - **聚合**：一个类的对象包含另一个类的对象，生命周期不一致。
+```
+class Engine:
+    def start(self):
+        print("Engine started.")
 
+class Car:
+    def __init__(self):
+        self.engine = Engine()  # 组合
+
+    def start(self):
+        self.engine.start()
+        print("Car started.")
+
+# 使用
+my_car = Car()
+my_car.start()  # 输出: Engine started. Car started.
+```
 ---
 
 ## 总结

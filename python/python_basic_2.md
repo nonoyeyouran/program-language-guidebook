@@ -139,7 +139,46 @@ my_dog.speak()  # 输出: Buddy barks!
 
 ### 6.2 鸭子类型
 - Python 是一种动态类型语言，不强制要求对象继承自某个类，只要对象具有所需的方法即可。
+```
+# 基类：定义图形的绘制功能
+class Drawable:
+    def draw(self):
+        raise NotImplementedError("Subclasses must implement draw()")
 
+# 基类：定义图形的保存功能
+class Saveable:
+    def save(self):
+        raise NotImplementedError("Subclasses must implement save()")
+
+# 圆形类：继承 Drawable 和 Saveable
+class Circle(Drawable, Saveable):
+    def draw(self):
+        print("Drawing a Circle")
+
+    def save(self):
+        print("Saving Circle to file")
+
+# 矩形类：继承 Drawable 和 Saveable
+class Rectangle(Drawable, Saveable):
+    def draw(self):
+        print("Drawing a Rectangle")
+
+    def save(self):
+        print("Saving Rectangle to file")
+
+# 多态函数：统一调用绘制和保存方法
+def render_and_save(shape):
+    shape.draw()  # 多态：调用具体图形的 draw 方法
+    shape.save()  # 多态：调用具体图形的 save 方法
+
+# 使用
+circle = Circle()
+rectangle = Rectangle()
+
+# 多态调用
+render_and_save(circle)    # 输出: Drawing a Circle \n Saving Circle to file
+render_and_save(rectangle) # 输出: Drawing a Rectangle \n Saving Rectangle to file
+```
 ---
 
 ## 7. 特殊方法（魔术方法）

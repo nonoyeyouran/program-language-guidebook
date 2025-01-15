@@ -136,7 +136,18 @@ with ThreadPoolExecutor(max_workers=3) as executor:
 
 ### 5.1 `multiprocessing` 模块
 - 提供了多进程编程的支持，每个进程有独立的 GIL。
+```
+from multiprocessing import Process
 
+def print_numbers():
+    for i in range(5):
+        print(i)
+
+# 创建进程
+process = Process(target=print_numbers)
+process.start()
+process.join()
+```
 ### 5.2 多进程的优点
 - 充分利用多核 CPU 的性能。
 - 每个进程有独立的内存空间，避免 GIL 的限制。

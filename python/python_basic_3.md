@@ -65,6 +65,27 @@ print(counter)  # 输出: 1000000
 ### 2.2 条件变量 (`Condition`)
 - 用于线程间的通信，允许线程等待特定条件满足。
 - 使用 `wait()`、`notify()` 和 `notify_all()` 方法。
+```
+import threading
+
+condition = threading.Condition()
+items = []
+
+def consumer():
+    with condition:
+        if not items:
+            condition.wait()  # 等待生产者通知
+        print("Consuming item:", items.pop())
+
+def producer():
+    with condition:
+        items.append("New Item")
+        condition.notify()  # 通知消费者
+
+# 创建线程
+threading.Thread(target=consumer).start()
+threading.Thread(target=producer).start()
+```
 
 ### 2.3 信号量 (`Semaphore`)
 - 用于控制对共享资源的访问数量。
@@ -85,7 +106,18 @@ print(counter)  # 输出: 1000000
 ### 3.2 线程池的优点
 - 减少线程创建和销毁的开销。
 - 控制并发线程的数量。
+```
+from concurrent.futures import ThreadPoolExecutor
 
+def task(n):
+    return n * n
+
+# 创建线程池
+with ThreadPoolExecutor(max_workers=3) as executor:
+    futures = [executor.submit(task, i) for i in range(10)]
+    for future in futures:
+        print(future.result())
+```
 ---
 
 ## 4. 全局解释器锁 (GIL)

@@ -28,27 +28,31 @@
 ### random()
 - **功能**：生成一个 `[0.0, 1.0)` 范围内的随机浮点数。
 - **示例**：
+  ```
   import random
   print(random.random())
-
+  ```
 ### uniform()
 - **功能**：生成指定范围内的随机浮点数。
 - **示例**：
+  ```
   import random
   print(random.uniform(1.0, 10.0))
-
+  ```
 ### randint()
 - **功能**：生成指定范围内的随机整数（包含两端点）。
 - **示例**：
+  ```
   import random
   print(random.randint(1, 10))
-
+  ```
 ### randrange()
 - **功能**：生成指定范围内的随机整数（不包含结束值）。
 - **示例**：
+  ```
   import random
   print(random.randrange(1, 10))
-
+  ```
 ---
 
 ## 随机选择
@@ -56,32 +60,36 @@
 ### choice()
 - **功能**：从序列中随机选择一个元素。
 - **示例**：
+  ```
   import random
   fruits = ['apple', 'banana', 'orange']
   print(random.choice(fruits))
-
+  ```
 ### choices()
 - **功能**：从序列中随机选择多个元素（允许重复）。
 - **示例**：
+  ```
   import random
   fruits = ['apple', 'banana', 'orange']
   print(random.choices(fruits, k=2))
-
+  ```
 ### sample()
 - **功能**：从序列中随机选择多个元素（不允许重复）。
 - **示例**：
+  ```
   import random
   fruits = ['apple', 'banana', 'orange']
   print(random.sample(fruits, k=2))
-
+  ```
 ### shuffle()
 - **功能**：随机打乱序列的顺序。
 - **示例**：
+  ```
   import random
   fruits = ['apple', 'banana', 'orange']
   random.shuffle(fruits)
   print(fruits)
-
+  ```
 ---
 
 ## 随机种子
@@ -89,10 +97,11 @@
 ### seed()
 - **功能**：设置随机种子，使随机结果可重复。
 - **示例**：
+  ```
   import random
   random.seed(42)
   print(random.random())
-
+  ```
 ---
 
 ## 总结

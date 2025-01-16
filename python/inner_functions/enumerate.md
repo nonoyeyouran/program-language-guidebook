@@ -22,6 +22,7 @@
 - **返回值**：返回一个枚举对象，每个元素是一个元组 `(index, value)`。
 
 ### 示例
+```
 fruits = ['apple', 'banana', 'orange']
 for index, value in enumerate(fruits):
     print(index, value)
@@ -30,7 +31,7 @@ for index, value in enumerate(fruits):
 0 apple
 1 banana
 2 orange
-
+```
 ---
 
 ## 自定义起始索引

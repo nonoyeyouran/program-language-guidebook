@@ -38,6 +38,7 @@ for index, value in enumerate(fruits):
 - 通过 `start` 参数可以指定索引的起始值。
 
 ### 示例
+```
 fruits = ['apple', 'banana', 'orange']
 for index, value in enumerate(fruits, start=1):
     print(index, value)
@@ -46,13 +47,14 @@ for index, value in enumerate(fruits, start=1):
 1 apple
 2 banana
 3 orange
-
+```
 ---
 
 ## 遍历字典
 - 使用 `enumerate` 遍历字典时，默认枚举的是字典的键。
 
 ### 示例
+```
 fruits = {'apple': 1, 'banana': 2, 'orange': 3}
 for index, key in enumerate(fruits):
     print(index, key, fruits[key])
@@ -61,13 +63,14 @@ for index, key in enumerate(fruits):
 0 apple 1
 1 banana 2
 2 orange 3
-
+```
 ---
 
 ## 与 zip 结合使用
 - `enumerate` 可以与 `zip` 结合使用，同时遍历多个可迭代对象并获取索引。
 
 ### 示例
+```
 fruits = ['apple', 'banana', 'orange']
 prices = [1.0, 2.0, 3.0]
 for index, (fruit, price) in enumerate(zip(fruits, prices)):
@@ -77,7 +80,7 @@ for index, (fruit, price) in enumerate(zip(fruits, prices)):
 0 apple 1.0
 1 banana 2.0
 2 orange 3.0
-
+```
 ---
 
 ## 总结

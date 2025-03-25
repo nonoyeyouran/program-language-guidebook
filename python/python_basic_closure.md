@@ -14,18 +14,21 @@
 ## 闭包的示例
 
 以下是一个简单的 Python 闭包示例：
-
+```
 def outer_function(x):
     def inner_function(y):
         return x + y  # inner_function 捕获了外层函数的变量 x
     return inner_function
-
+```
 # 创建闭包
+```
 closure = outer_function(10)
+```
 # 调用闭包
+```
 result = closure(5)
 print(result)  # 输出 15
-
+```
 ### 解释：
 1. `outer_function` 是一个外层函数，接受参数 `x`。
 2. `inner_function` 是一个内层函数，接受参数 `y`，并且引用了外层函数的变量 `x`。
@@ -49,6 +52,7 @@ print(closure.__closure__[0].cell_contents)  # 输出 10，即 x 的值
 ## 另一个实用示例
 
 假设我们要实现一个计数器：
+```
 def counter():
     count = 0
     def increment():
@@ -61,7 +65,7 @@ c = counter()
 print(c())  # 输出 1
 print(c())  # 输出 2
 print(c())  # 输出 3
-
+```
 在这个例子中，`increment` 是一个闭包，它记住了 `count` 的值，并能在每次调用时修改它。
 
 ## 注意事项
